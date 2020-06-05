@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+<!--    <bean class="com.xiazhi.series.HelloWorld"/>-->
+
+    <bean id="info" class="com.xiazhi.series.model.UserInfo"/>
+    <!--通过有参构造创建bean-->
+    <bean id="userInfo" class="com.xiazhi.series.model.UserInfo">
+        <constructor-arg index="0" value="张三"/>
+        <constructor-arg index="1" value="18"/>
+    </bean>
+    <!--通过工厂创建-->
+    <bean id="userInfo2" class="com.xiazhi.series.factory.UserInfoFactory" factory-method="userInfo2">
+        <constructor-arg index="0" value="李四"/>
+        <constructor-arg index="1" value="20"/>
+    </bean>
+    <bean id="userInfo1" class="com.xiazhi.series.factory.UserInfoFactory" factory-method="userInfo1"/>
+
+    <bean id="userInfoFactory2" class="com.xiazhi.series.factory.UserInfoFactory2"/>
+    <bean id="userInfo3" class="com.xiazhi.series.factory.UserInfoFactory2" factory-bean="userInfoFactory2"
+          factory-method="userInfo1"/>
+
+    <bean id="userInfo4" class="com.xiazhi.series.factory.UserInfoFactory2" factory-bean="userInfoFactory2" factory-method="userInfo2">
+        <constructor-arg index="0" value="王五"/>
+        <constructor-arg index="1" value="55"/>
+    </bean>
+
+    <bean id="userFactoryBean" class="com.xiazhi.series.factory.UserFactoryBean"/>
+</beans>
